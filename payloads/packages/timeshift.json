@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "timeshift",
+  "title": "Timeshift",
+  "description": "Initial baseline payload definition for timeshift.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "timeshift",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "timeshift.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "timeshift"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "timeshift.command",
+      "check": [
+        "command",
+        "timeshift"
+      ],
+      "expected": "timeshift is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

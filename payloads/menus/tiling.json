@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "tiling",
+  "title": "GNOME tiling",
+  "selection": "single",
+  "default": "none",
+  "options": [
+    {
+      "id": "none",
+      "label": "None",
+      "packageIds": []
+    },
+    {
+      "id": "otiling",
+      "label": "O-Tiling",
+      "packageIds": [
+        "otiling"
+      ]
+    },
+    {
+      "id": "tiling-shell",
+      "label": "Tiling Shell",
+      "packageIds": [
+        "tiling-shell"
+      ]
+    },
+    {
+      "id": "simple-tiling",
+      "label": "Simple Tiling",
+      "packageIds": [
+        "simple-tiling"
+      ]
+    },
+    {
+      "id": "paperwm",
+      "label": "PaperWM",
+      "packageIds": [
+        "paperwm"
+      ]
+    }
+  ]
+}

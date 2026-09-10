@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "tailscale",
+  "title": "Tailscale",
+  "description": "Initial baseline payload definition for tailscale.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [{ "id": "curl" }],
+  "delivery": {
+    "manager": "script",
+    "package": "tailscale",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "tailscale.install",
+      "phase": "install",
+      "executor": "script",
+      "run": [
+        "sh",
+        "-c",
+        "curl -fsSL https://tailscale.com/install.sh | sh"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "tailscale.command",
+      "check": [
+        "command",
+        "tailscale"
+      ],
+      "expected": "tailscale is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

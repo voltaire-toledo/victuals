@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "manage-arrangement",
+  "title": "Manage Display Arrangement",
+  "description": "Linutil-inspired Manage Display Arrangement operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "display"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "manage-arrangement.apply",
+      "phase": "configure",
+      "executor": "shell",
+      "run": [
+        "set-display-arrangement"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "manage-arrangement.validation",
+      "check": [
+        "display-layout",
+        "--check"
+      ],
+      "expected": "Manage Display Arrangement is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

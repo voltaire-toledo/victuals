@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "browsers",
+  "title": "Browsers",
+  "selection": "multi",
+  "default": [
+    "firefox"
+  ],
+  "options": [
+    {
+      "id": "firefox",
+      "label": "Firefox",
+      "packageIds": [
+        "firefox"
+      ]
+    },
+    {
+      "id": "chromium",
+      "label": "Chromium",
+      "packageIds": [
+        "chromium"
+      ]
+    },
+    {
+      "id": "google-chrome",
+      "label": "Google Chrome",
+      "packageIds": [
+        "google-chrome"
+      ]
+    }
+  ]
+}

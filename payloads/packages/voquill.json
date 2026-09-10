@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "voquill",
+  "title": "Voquill",
+  "description": "Initial optional payload definition for voquill.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "appimage",
+    "package": "voquill",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "voquill.install",
+      "phase": "install",
+      "executor": "appimage",
+      "run": [
+        "voquill"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "voquill.command",
+      "check": [
+        "command",
+        "voquill"
+      ],
+      "expected": "voquill is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

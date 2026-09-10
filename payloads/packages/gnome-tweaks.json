@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "gnome-tweaks",
+  "title": "Gnome Tweaks",
+  "description": "Initial baseline payload definition for gnome-tweaks.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "gnome-tweaks",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "gnome-tweaks.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "gnome-tweaks"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "gnome-tweaks.command",
+      "check": [
+        "command",
+        "gnome-tweaks"
+      ],
+      "expected": "gnome-tweaks is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

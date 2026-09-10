@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "betterbird",
+  "title": "Betterbird",
+  "description": "Initial optional payload definition for betterbird.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "curl",
+    "package": "betterbird",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "betterbird.install",
+      "phase": "install",
+      "executor": "curl",
+      "run": [
+        "betterbird"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "betterbird.command",
+      "check": [
+        "command",
+        "betterbird"
+      ],
+      "expected": "betterbird is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

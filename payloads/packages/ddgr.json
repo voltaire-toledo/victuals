@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "ddgr",
+  "title": "Ddgr",
+  "description": "Initial baseline payload definition for ddgr.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "ddgr",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "ddgr.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "ddgr"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ddgr.command",
+      "check": [
+        "command",
+        "ddgr"
+      ],
+      "expected": "ddgr is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

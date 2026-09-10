@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "fwupd",
+  "title": "Fwupd",
+  "description": "Initial baseline payload definition for fwupd.",
+  "kind": "service",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "fwupd",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "fwupd.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "fwupd"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "fwupd.command",
+      "check": [
+        "command",
+        "fwupd"
+      ],
+      "expected": "fwupd is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

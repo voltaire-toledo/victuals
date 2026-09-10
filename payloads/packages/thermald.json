@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "thermald",
+  "title": "Thermald",
+  "description": "Initial baseline payload definition for thermald.",
+  "kind": "service",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "thermald",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "thermald.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "thermald"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "thermald.command",
+      "check": [
+        "command",
+        "thermald"
+      ],
+      "expected": "thermald is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

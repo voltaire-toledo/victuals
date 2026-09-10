@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "jq",
+  "title": "Jq",
+  "description": "Initial baseline payload definition for jq.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "jq",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "jq.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "jq"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "jq.command",
+      "check": [
+        "command",
+        "jq"
+      ],
+      "expected": "jq is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

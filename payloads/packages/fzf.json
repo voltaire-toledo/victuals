@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "fzf",
+  "title": "Fzf",
+  "description": "Initial baseline payload definition for fzf.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "fzf",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "fzf.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "fzf"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "fzf.command",
+      "check": [
+        "command",
+        "fzf"
+      ],
+      "expected": "fzf is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

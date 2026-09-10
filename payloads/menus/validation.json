@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "validation",
+  "title": "Validation",
+  "selection": "confirm",
+  "default": true,
+  "options": [{ "id": "validate", "label": "Validate the deployment", "description": "Run package and system validation checks." }]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "neovim",
+  "title": "Neovim",
+  "description": "Terminal editor option.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "neovim",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "neovim.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "neovim"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "neovim.ready",
+      "check": [
+        "command",
+        "neovim"
+      ],
+      "expected": "neovim is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "flatpak",
+  "title": "Flatpak",
+  "description": "Flatpak runtime and Flathub remote configuration.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "flatpak",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "flatpak.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "flatpak"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "flatpak.ready",
+      "check": [
+        "command",
+        "flatpak"
+      ],
+      "expected": "flatpak is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

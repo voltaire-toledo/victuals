@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "firefox",
+  "title": "Firefox",
+  "description": "Initial optional payload definition for firefox.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "org.mozilla.firefox",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "firefox.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "org.mozilla.firefox"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "firefox.command",
+      "check": [
+        "command",
+        "firefox"
+      ],
+      "expected": "firefox is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

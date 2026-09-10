@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "google-chrome",
+  "title": "Google Chrome",
+  "description": "Initial optional payload definition for google-chrome.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "deb",
+    "package": "google-chrome-stable",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "google-chrome.install",
+      "phase": "install",
+      "executor": "deb",
+      "run": [
+        "google-chrome-stable"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "google-chrome.command",
+      "check": [
+        "command",
+        "google-chrome"
+      ],
+      "expected": "google-chrome is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

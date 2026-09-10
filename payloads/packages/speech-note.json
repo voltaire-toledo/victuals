@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "speech-note",
+  "title": "Speech Note",
+  "description": "Initial optional payload definition for speech-note.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "net.mkiol.SpeechNote",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "speech-note.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "net.mkiol.SpeechNote"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "speech-note.command",
+      "check": [
+        "command",
+        "speech-note"
+      ],
+      "expected": "speech-note is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

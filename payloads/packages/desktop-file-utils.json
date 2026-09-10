@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "desktop-file-utils",
+  "title": "Desktop File Utils",
+  "description": "Initial baseline payload definition for desktop-file-utils.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "desktop-file-utils",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "desktop-file-utils.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "desktop-file-utils"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "desktop-file-utils.command",
+      "check": [
+        "command",
+        "desktop-file-utils"
+      ],
+      "expected": "desktop-file-utils is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

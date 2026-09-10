@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "obs-studio",
+  "title": "Obs Studio",
+  "description": "Linutil Store application definition for obs-studio.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "creative"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "obs-studio",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "obs-studio.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "obs-studio"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "obs-studio.ready",
+      "check": [
+        "command",
+        "obs-studio"
+      ],
+      "expected": "obs-studio is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

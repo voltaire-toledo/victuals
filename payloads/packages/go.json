@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "go",
+  "title": "Go",
+  "description": "Initial optional payload definition for go.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "mise",
+    "package": "go@latest",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "go.install",
+      "phase": "install",
+      "executor": "mise",
+      "run": [
+        "go@latest"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "go.command",
+      "check": [
+        "command",
+        "go"
+      ],
+      "expected": "go is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

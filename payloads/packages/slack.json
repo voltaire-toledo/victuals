@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "slack",
+  "title": "Slack",
+  "description": "Linutil Store application definition for slack.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "communication"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "com.slack.Slack",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "slack.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "com.slack.Slack"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "slack.ready",
+      "check": [
+        "command",
+        "slack"
+      ],
+      "expected": "slack is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

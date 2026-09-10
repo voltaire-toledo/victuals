@@ -1,0 +1,46 @@
+;; ~/.config/kanata/config.kbd
+
+(defcfg
+  process-unmapped-keys yes
+  ;; Ensure your linux-dev path is uncommented here if you are bypassing auto-discovery
+  ;; linux-dev /dev/input/by-id/usb-YOUR_KEYBOARD_NAME-event-kbd
+)
+
+(defsrc
+  a s d f
+  j k l scln
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+;; Left-hand modifiers trigger when right-hand keys are pressed
+(deftemplate lhrm (tap-key hold-key)
+  (tap-hold-release-keys $tap-time $hold-time $tap-key $hold-key (y u i o p h j k l scln n m comm . /))
+)
+
+;; Right-hand modifiers trigger when left-hand keys are pressed
+(deftemplate rhrm (tap-key hold-key)
+  (tap-hold-release-keys $tap-time $hold-time $tap-key $hold-key (q w e r t a s d f g z x c v b))
+)
+
+(defalias
+  ;; Left hand: Ctrl, Super, Alt, Shift
+  a (t! lhrm a lctl)
+  s (t! lhrm s lmet)
+  d (t! lhrm d lalt)
+  f (t! lhrm f lsft)
+
+  ;; Right hand: Shift, Alt, Super, Ctrl
+  j (t! rhrm j rsft)
+  k (t! rhrm k ralt)
+  l (t! rhrm l rmet)
+  scln (t! rhrm scln rctl)
+)
+
+(deflayer base
+  @a @s @d @f
+  @j @k @l @scln
+)

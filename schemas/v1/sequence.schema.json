@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/voltaire-toledo/victuals/main/schemas/v1/sequence.schema.json",
+  "title": "Victuals menu and queue sequence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "entryMenu", "steps"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "id": { "type": "string" }, "version": { "type": "string" }, "entryMenu": { "type": "string" },
+    "steps": { "type": "array", "items": { "$ref": "#/$defs/step" }, "minItems": 1 },
+    "finalApproval": { "type": "boolean", "default": true }, "output": { "enum": ["plan", "manifest", "json", "table"] }
+  },
+  "$defs": { "step": { "type": "object", "additionalProperties": false, "required": ["id", "menuId", "queue"], "properties": { "id": { "type": "string" }, "menuId": { "type": "string" }, "queue": { "enum": ["immediate", "on-select", "on-confirm", "never"] }, "packageIds": { "type": "array", "items": { "type": "string" } }, "next": { "type": "string" } } } }
+}

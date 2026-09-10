@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "tor-browser",
+  "title": "Tor Browser",
+  "description": "Linutil Store application definition for tor-browser.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "browser"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "torbrowser-launcher",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "tor-browser.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "torbrowser-launcher"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "tor-browser.ready",
+      "check": [
+        "command",
+        "tor-browser"
+      ],
+      "expected": "tor-browser is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

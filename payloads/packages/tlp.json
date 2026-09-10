@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "tlp",
+  "title": "Tlp",
+  "description": "Initial baseline payload definition for tlp.",
+  "kind": "service",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "tlp",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "tlp.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "tlp"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "tlp.command",
+      "check": [
+        "command",
+        "tlp"
+      ],
+      "expected": "tlp is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

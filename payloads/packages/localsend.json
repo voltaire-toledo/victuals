@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "localsend",
+  "title": "Localsend",
+  "description": "Initial baseline payload definition for localsend.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "org.localsend.localsend_app",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "localsend.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "org.localsend.localsend_app"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "localsend.command",
+      "check": [
+        "command",
+        "localsend"
+      ],
+      "expected": "localsend is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

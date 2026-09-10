@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/voltaire-toledo/victuals/main/schemas/v1/menu.schema.json",
+  "title": "Victuals menu definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "selection", "options"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "id": { "type": "string" }, "title": { "type": "string" }, "description": { "type": "string" },
+    "selection": { "enum": ["single", "multi", "confirm", "text"] },
+    "default": { "type": ["string", "array", "boolean", "null"] },
+    "options": { "type": "array", "items": { "$ref": "#/$defs/option" }, "minItems": 1 },
+    "next": { "type": "string" }, "metrics": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": { "option": { "type": "object", "additionalProperties": false, "required": ["id", "label"], "properties": { "id": { "type": "string" }, "label": { "type": "string" }, "description": { "type": "string" }, "packageIds": { "type": "array", "items": { "type": "string" } }, "next": { "type": "string" }, "recommended": { "type": "boolean" } } } }
+}

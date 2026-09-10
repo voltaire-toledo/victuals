@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "gdebi",
+  "title": "Gdebi",
+  "description": "Initial bootstrap payload definition for gdebi.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "gdebi",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "gdebi.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "gdebi"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "gdebi.command",
+      "check": [
+        "command",
+        "gdebi"
+      ],
+      "expected": "gdebi is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

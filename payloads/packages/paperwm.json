@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "paperwm",
+  "title": "Paperwm",
+  "description": "Initial optional payload definition for paperwm.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "curl",
+    "package": "paperwm",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "paperwm.install",
+      "phase": "install",
+      "executor": "curl",
+      "run": [
+        "paperwm"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "paperwm.command",
+      "check": [
+        "command",
+        "paperwm"
+      ],
+      "expected": "paperwm is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

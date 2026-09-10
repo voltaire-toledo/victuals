@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "librewolf",
+  "title": "Librewolf",
+  "description": "Linutil Store application definition for librewolf.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "browser"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "librewolf",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "librewolf.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "librewolf"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "librewolf.ready",
+      "check": [
+        "command",
+        "librewolf"
+      ],
+      "expected": "librewolf is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

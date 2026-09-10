@@ -1,0 +1,61 @@
+version: '3'
+
+tasks:
+  all:
+    desc: "Fully hydrate a freshly installed Ubuntu workstation"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -r /etc/os-release && . /etc/os-release && test "$ID" = ubuntu'
+        msg: "This hydration workflow currently supports Ubuntu only."
+    cmds:
+      - sudo -v
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/ubu.sh"
+
+  preview:
+    desc: "Run the complete Gum hydration questionnaire without changing the system"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -r /etc/os-release && . /etc/os-release && test "$ID" = ubuntu'
+        msg: "This hydration preview currently supports Ubuntu only."
+      - sh: 'command -v gum >/dev/null 2>&1'
+        msg: "Gum is required for the preview; install it before running task hydrate:preview."
+    cmds:
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/ubu.sh" preview
+
+  gnome-optimize:
+    desc: "Review and apply the standalone GNOME optimization policy"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -r /etc/os-release && . /etc/os-release && test "$ID" = ubuntu'
+        msg: "The GNOME optimization policy currently supports Ubuntu only."
+    cmds:
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/gnome-optimize.sh"
+
+  apply:
+    desc: "Apply a confirmed hydration selection manifest"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -n "$HYDRATE_SELECTIONS_FILE" && test -r "$HYDRATE_SELECTIONS_FILE"'
+        msg: "Hydration application requires a selection manifest from the hydrator."
+    cmds:
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/ubu.sh" apply "$HYDRATE_SELECTIONS_FILE"
+
+  shell-config:
+    desc: "Link the mandatory shell configuration after its tools are installed"
+    platforms: [linux]
+    cmds:
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" git:config
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" fastfetch:config
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" zsh:config
+
+  gpu-integrated:
+    desc: "Switch to Intel-only graphics for maximum battery life (reboot required)"
+    platforms: [linux]
+    cmds:
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/ubu.sh" gpu-integrated
+
+  gpu-compute:
+    desc: "Make NVIDIA available on demand for local models (reboot required)"
+    platforms: [linux]
+    cmds:
+      - bash "{{.ROOT_DIR}}/os/linux/scripts/ubu.sh" gpu-compute

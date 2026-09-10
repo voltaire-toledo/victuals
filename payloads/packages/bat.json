@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "bat",
+  "title": "Bat",
+  "description": "Initial baseline payload definition for bat.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "bat",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "bat.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "bat"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "bat.command",
+      "check": [
+        "command",
+        "bat"
+      ],
+      "expected": "bat is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

@@ -1,0 +1,17 @@
+version: '3'
+
+includes:
+  hydrate: ./tasks/hydrate.yml
+  battdrain: ./tasks/battdrain.yml
+
+tasks:
+  default:
+    desc: "List available Victuals tasks"
+    cmds:
+      - task --list --sort=none
+    silent: true
+
+  hydrate:
+    desc: "Run the Linux hydration flow"
+    cmds:
+      - task: hydrate:all

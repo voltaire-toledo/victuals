@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "unzip",
+  "title": "Unzip",
+  "description": "Initial baseline payload definition for unzip.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "unzip",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "unzip.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "unzip"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "unzip.command",
+      "check": [
+        "command",
+        "unzip"
+      ],
+      "expected": "unzip is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

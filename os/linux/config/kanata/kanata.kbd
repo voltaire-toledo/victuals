@@ -1,0 +1,280 @@
+;; clean.kbd (Linux adaptation - Dell Precision)
+;; Target: Linux, Dell Precision laptop keyboard
+
+(defcfg
+  process-unmapped-keys yes
+  block-unmapped-keys no
+  log-layer-changes no
+  concurrent-tap-hold yes
+  delegate-to-first-layer yes
+  chords-v2-min-idle 350
+)
+
+(defvar
+  tapping-term       300    ;; hold timeout for HRM keys
+  quick-tap-ms       300    ;; tap-repress timeout (ZMK tap-repress-timeout)
+  require-prior-idle 150    ;; idle window before HRM hold is allowed (ZMK require-prior-idle)
+  combo-timeout      60     ;; chord activation window
+
+  ;; Keys used for bilateral disambiguation in tap-hold-release-keys.
+  ;; Pressing a key from the opposite side while holding an HRM immediately outputs a tap.
+  left-hand-keys  (grv 1 2 3 4 5 tab q w e r t g z x c v b)
+  right-hand-keys (6 7 8 9 0 - = bspc y u i o p [ ] \ scln ' ret n m , . /)
+
+)
+
+;; urob timeless home row mod templates
+(deftemplate lhrm (tappingterm tap-key hold-key)
+  (tap-hold-release-keys $quick-tap-ms $tappingterm
+    (multi $tap-key @tap) $hold-key
+    $left-hand-keys)
+)
+
+(deftemplate rhrm (tappingterm tap-key hold-key)
+  (tap-hold-release-keys $quick-tap-ms $tappingterm
+    (multi $tap-key @tap) $hold-key
+    $right-hand-keys)
+)
+
+(deftemplate nomod (tap-key)
+  (multi $tap-key @tap)
+)
+
+(defvirtualkeys
+  to-base (layer-switch base)  ;; used by @tap to return from nomods layer after idle
+)
+
+(defalias
+  cw (caps-word 2000)
+
+  ;; require-prior-idle emulation (from ldebritto-urob):
+  ;; Each keypress briefly switches to `nomods` (no HRM keys), then
+  ;; on-idle fires after $require-prior-idle ms of inactivity to return to base.
+  ;; This prevents HRM hold from triggering during fast sequential typing.
+  tap (multi
+    (layer-switch nomods)
+    (on-idle $require-prior-idle tap-virtualkey to-base)
+  )
+
+  ;; --- Caps Lock: tap=Esc, hold=Numpad ---
+  caps_num (tap-hold-release $quick-tap-ms $tapping-term esc (layer-while-held num))
+
+  ;; --- Spacebar: tap=space, hold=nav layer ---
+  ;; Increased timeout and changed to tap-hold-release to prevent dropping spaces during fast typing
+  spc_nav (tap-hold-release 200 250 spc (layer-toggle nav))
+
+  ;; --- Tab: tap=tab, hold=Hyper ---
+  tab_hyper (tap-hold-release $quick-tap-ms $tapping-term tab (multi lctl lalt lmet lsft))
+
+  ;; --- Bilateral Symbol Layer Aliases ---
+  tilde    S-grv
+  at       S-2
+  hash     S-3
+  dollar   S-4
+  percent  S-5
+  lparen   S-9
+  lbrace   S-[
+   lbracket lbrc
+  backtick grv
+  excl     S-1
+
+  caret    S-6
+  amp      S-7
+  asterisk S-8
+  rparen   S-0
+  rbrace   S-]
+  rbracket rbrc
+
+  under    S--
+  plus     S-=
+
+  ;; --- Tap-Dance Macros ---
+  m_parens   (macro S-9 S-0)
+  m_braces   (macro S-[ S-])
+  m_brackets (macro lbrc rbrc)
+  m_angles   (macro S-, S-.)
+
+  ;; --- Tap-Dance Aliases ---
+  td_j (tap-dance 250 (S-9 S-0 @m_parens))
+  td_k (tap-dance 250 (S-[ S-] @m_braces))
+  td_l (tap-dance 250 (lbrc rbrc @m_brackets))
+  td_m (tap-dance 250 (S-, S-. @m_angles))
+
+  ;; --- Index-finger Symbol Layer Activators ---
+  g_sym (tap-hold-release $quick-tap-ms $tapping-term g (layer-while-held sym))
+  h_sym (tap-hold-release $quick-tap-ms $tapping-term h (layer-while-held sym))
+
+  ;; --- Home Row Mods (left hand): Ctrl / Cmd / Alt / Shift ---
+  a_mod   (t! lhrm $tapping-term a    lctl)
+  s_mod   (t! lhrm $tapping-term s    lmet)
+  d_mod   (t! lhrm $tapping-term d    lalt)
+  f_mod   (t! lhrm $tapping-term f    lsft)
+
+  ;; --- Home Row Mods (right hand): Shift / Alt / Cmd / Ctrl ---
+  j_mod   (t! rhrm $tapping-term j    rsft)
+  k_mod   (t! rhrm $tapping-term k    ralt)
+  l_mod   (t! rhrm $tapping-term l    lmet)
+  sem_mod (t! rhrm $tapping-term scln rctl)
+
+  ;; --- Z: nomod-wrapped (used inside zfn) ---
+  z (t! nomod z)
+
+  ;; --- zfn: tap=z, hold=fn-base layer (secondary fn access from home area) ---
+  zfn (t! lhrm $tapping-term @z (layer-while-held fn-base))
+
+  ;; --- nomod-wrapped alpha keys (require-prior-idle behavior for all non-HRM keys) ---
+  q (t! nomod q)
+  w (t! nomod w)
+  e (t! nomod e)
+  r (t! nomod r)
+  t (t! nomod t)
+
+  y (t! nomod y)
+  u (t! nomod u)
+  i (t! nomod i)
+  o (t! nomod o)
+  p (t! nomod p)
+
+  g (t! nomod g)
+  h (t! nomod h)
+  ' (t! nomod ')
+
+  x (t! nomod x)
+  c (t! nomod c)
+  v (t! nomod v)
+  b (t! nomod b)
+
+  n (t! nomod n)
+  m (t! nomod m)
+  , (t! nomod ,)
+  . (t! nomod .)
+  / (t! nomod /)
+
+  ;; --- Nav layer shortcuts ---
+  opt_bspc (multi lalt bspc)
+  opt_del  (multi lalt del)
+  ctrl_q   (multi lctl q)
+  ctrl_w   (multi lctl w)
+  ctrl_z   (multi lctl z)
+  ctrl_x   (multi lctl x)
+  ctrl_c   (multi lctl c)
+  ctrl_v   (multi lctl v)
+  opt_dot  (multi lalt .)
+
+  ;; --- Fn layer toggles ---
+  fn_base (layer-toggle fn-base)
+  fn_byp  (layer-toggle fn-byp)
+  to_byp  (layer-switch bypass)
+  to_base (layer-switch base)
+
+  ;; --- Num layer macros ---
+  r$  (macro S-r S-4 spc)            ;; "R$ " (currency prefix)
+  000 (macro Digit0 Digit0 Digit0)   ;; "000"
+  ,00 (macro , Digit0 Digit0 spc)    ;; ",00 "
+)
+
+;; (defchordsv2
+;;   (esc bspc) lrld $combo-timeout all-released (base nomods nav num sym bypass fn-base fn-byp muggle)
+;; )
+
+(defsrc
+  esc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    scln '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer base
+  esc
+  grv        1      2      3      4      5      6      7      8      9       0       -    =   bspc
+  @tab_hyper @q     @w     @e     @r     @t     @y     @u     @i     @o      @p      [    ]   \
+  @caps_num  @a_mod @s_mod @d_mod @f_mod @g_sym @h_sym @j_mod @k_mod @l_mod @sem_mod @'   ret
+  lsft       @zfn   @x     @c     @v     @b     @n     @m     @,     @.      @/      rsft
+  lctl       lmet   lalt          @spc_nav      ralt   rctl
+)
+
+;; Temporarily active during fast typing to prevent accidental HRM hold activation.
+;; All HRM keys output their tap character here, except the shift keys (F=lsft, J=rsft)
+;; which stay active so you can capitalize while typing fast.
+(deflayer nomods
+  esc
+  grv      1     2     3    4    5    6    7    8    9     0     -     =     bspc
+  tab      q     w     e    r    t    y    u    i    o     p     [     ]     \
+  @caps_num a    s     d    @f_mod g      h      @j_mod k  l     scln  '     ret
+  lsft     z     x     c    v    b    n    m    ,    .     /     rsft
+  lctl lmet lalt           @spc_nav       ralt rctl
+)
+
+(deflayer nav
+  _
+  _    _       _       _       _      _    _     _     spc   _        _    _    _    _
+  _    @ctrl_q @ctrl_w _       _      spc  spc   del   up    bspc     _    _    _    _
+  _    lctl    lmet    lalt    lsft   spc  home  left  down  rght     end  _    _
+  _    @ctrl_z @ctrl_x @ctrl_c @ctrl_v _    pgup  pgdn  _     @opt_dot _    _
+  _    _    _              _              _    _
+)
+
+;; Numpad on QWERTY row.
+;; Access: hold Caps Lock.
+(deflayer num
+  _
+  _    _     _     _    _     _     _    _    /    S-8  -     _     _     _
+  _    1     2     3    4     5     6    7    8    9    S-=   _     _     _
+  _    lctl  lalt  lsft lmet  _     tab  4    5    6    ret   bspc  _
+  _    _     _     caps @000  @,00  _    1    2    3    kp.   _
+  _    _     _             0              _    _
+)
+
+;; Symbols layer (combined).
+;; Access: hold G or H.
+(deflayer sym
+  _
+  _         _     _     _     _     _     _     _     _     _     _     _     _     _
+  @backtick @excl @at   @hash @dollar @percent @caret @amp   @asterisk -   @under = @plus _
+  @tilde    lctl  lmet  lalt  lsft  _     _     @td_j @td_k @td_l _     _     _
+  _         _     _     _     _     _     _     @td_m _     _     _     _
+  _         _     _                 @cw               _           _
+)
+
+;; No HRM, no layer tricks. Plain keyboard passthrough.
+;; Toggle via layer-switch muggle (add a shortcut or use kanata-tray to activate).
+(deflayer muggle
+  esc
+  grv  1     2     3    4    5    6    7    8    9     0     -     =     bspc
+  tab  q     w     e    r    t    y    u    i    o     p     [     ]     \
+  caps a     s     d    f    g    h    j    k    l     scln  '     ret
+  lsft z     x     c    v    b    n    m    ,    .     /     rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer bypass
+  esc
+  grv  1     2     3    4    5    6    7    8    9     0     -     =     bspc
+  tab  q     w     e    r    t    y    u    i    o     p     [     ]     \
+  caps a     s     d    f    g    h    j    k    l     scln  '     ret
+  lsft z     x     c    v    b    n    m    ,    .     /     rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer fn-base
+  _
+  _    _     _     _    _    _    _    _    _    _    _     _     _     _
+  _    _     _     _    _    _    _    _    _    _    _     _     _     @to_byp
+  _    _     _     _    _    _    _    _    _    _    _     _     _
+  _    _     _     _    _    _    _    _    _    _    _     _
+  _    _     _              _                   _     _
+)
+
+(deflayer fn-byp
+  _
+  _    _     _     _    _    _    _    _    _    _    _     _     _     _
+  _    _     _     _    _    _    _    _    _    _    _     _     _     @to_base
+  _    _     _     _    _    _    _    _    _    _    _     _     _
+  _    _     _     _    _    _    _    _    _    _    _     _
+  _    _     _              _                   _     _
+)
+
+(defchordsv2
+)

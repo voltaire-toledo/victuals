@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "waydroid",
+  "title": "Waydroid",
+  "description": "Linutil Store application definition for waydroid.",
+  "kind": "service",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "system"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "waydroid",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "waydroid.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "waydroid"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "waydroid.ready",
+      "check": [
+        "command",
+        "waydroid"
+      ],
+      "expected": "waydroid is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

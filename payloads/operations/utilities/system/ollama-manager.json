@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "ollama-manager",
+  "title": "Ollama Manager",
+  "description": "Linutil-inspired Ollama Manager operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "local-ai"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "ollama-manager.apply",
+      "phase": "configure",
+      "executor": "shell",
+      "run": [
+        "manage-ollama"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ollama-manager.validation",
+      "check": [
+        "ollama",
+        "--version"
+      ],
+      "expected": "Ollama Manager is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

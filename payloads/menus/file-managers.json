@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "file-managers",
+  "title": "File managers",
+  "selection": "multi",
+  "default": [],
+  "options": [
+    {
+      "id": "carelo",
+      "label": "Carelo",
+      "packageIds": [
+        "carelo"
+      ]
+    },
+    {
+      "id": "yazi",
+      "label": "Yazi",
+      "packageIds": [
+        "yazi"
+      ]
+    },
+    {
+      "id": "spacedrive",
+      "label": "Spacedrive v2",
+      "packageIds": [
+        "spacedrive"
+      ]
+    }
+  ]
+}

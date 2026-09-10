@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "signal",
+  "title": "Signal",
+  "description": "Linutil Store application definition for signal.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "communication"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "org.signal.Signal",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "signal.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "org.signal.Signal"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "signal.ready",
+      "check": [
+        "command",
+        "signal"
+      ],
+      "expected": "signal is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

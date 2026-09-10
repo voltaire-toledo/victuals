@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "kdenlive",
+  "title": "Kdenlive",
+  "description": "Linutil Store application definition for kdenlive.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "creative"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "kdenlive",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "kdenlive.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "kdenlive"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "kdenlive.ready",
+      "check": [
+        "command",
+        "kdenlive"
+      ],
+      "expected": "kdenlive is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

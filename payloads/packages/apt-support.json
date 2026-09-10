@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "apt-support",
+  "title": "Apt Support",
+  "description": "APT and local-deb support used before optional payloads are queued.",
+  "kind": "package",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "apt",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "apt-support.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "apt"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "apt-support.ready",
+      "check": [
+        "command",
+        "apt"
+      ],
+      "expected": "apt is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

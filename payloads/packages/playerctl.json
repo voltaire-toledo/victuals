@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "playerctl",
+  "title": "Playerctl",
+  "description": "Initial optional payload definition for playerctl.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "playerctl",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "playerctl.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "playerctl"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "playerctl.command",
+      "check": [
+        "command",
+        "playerctl"
+      ],
+      "expected": "playerctl is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

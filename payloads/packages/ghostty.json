@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "ghostty",
+  "title": "Ghostty",
+  "description": "Initial optional payload definition for ghostty.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "ghostty",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "ghostty.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "ghostty"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ghostty.command",
+      "check": [
+        "command",
+        "ghostty"
+      ],
+      "expected": "ghostty is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

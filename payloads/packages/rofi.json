@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "rofi",
+  "title": "Rofi",
+  "description": "Linutil Store application definition for rofi.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "system"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "rofi",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "rofi.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "rofi"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "rofi.ready",
+      "check": [
+        "command",
+        "rofi"
+      ],
+      "expected": "rofi is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "numlock-on-startup",
+  "title": "Numlock on Startup",
+  "description": "Linutil-inspired Numlock on Startup operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "input"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "numlock-on-startup.apply",
+      "phase": "configure",
+      "executor": "script",
+      "run": [
+        "configure-numlock"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "numlock-on-startup.validation",
+      "check": [
+        "numlock",
+        "--check"
+      ],
+      "expected": "Numlock on Startup is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}
