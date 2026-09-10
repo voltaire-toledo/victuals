@@ -1,0 +1,41 @@
+version: '3'
+
+tasks:
+  all:
+    desc: "Fully hydrate a freshly installed Ubuntu workstation"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -r /etc/os-release && . /etc/os-release && test "$ID" = ubuntu'
+        msg: "This hydration workflow currently supports Ubuntu only."
+    cmds:
+      - sudo -v
+      - bash "{{.ROOT_DIR}}/linux/scripts/hydrate-ubuntu.sh"
+
+  apply:
+    desc: "Apply a confirmed hydration selection manifest"
+    platforms: [linux]
+    preconditions:
+      - sh: 'test -n "$HYDRATE_SELECTIONS_FILE" && test -r "$HYDRATE_SELECTIONS_FILE"'
+        msg: "Hydration application requires a selection manifest from the hydrator."
+    cmds:
+      - bash "{{.ROOT_DIR}}/linux/scripts/hydrate-ubuntu.sh" apply "$HYDRATE_SELECTIONS_FILE"
+
+  shell-config:
+    desc: "Link the mandatory shell configuration after its tools are installed"
+    platforms: [linux]
+    cmds:
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" git:config
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" fastfetch:config
+      - task --taskfile "{{.ROOT_DIR}}/Taskfile.yml" zsh:config
+
+  gpu-integrated:
+    desc: "Switch to Intel-only graphics for maximum battery life (reboot required)"
+    platforms: [linux]
+    cmds:
+      - bash "{{.ROOT_DIR}}/linux/scripts/hydrate-ubuntu.sh" gpu-integrated
+
+  gpu-compute:
+    desc: "Make NVIDIA available on demand for local models (reboot required)"
+    platforms: [linux]
+    cmds:
+      - bash "{{.ROOT_DIR}}/linux/scripts/hydrate-ubuntu.sh" gpu-compute

@@ -5,9 +5,8 @@ The foundational provisions, infrastructure, and life-sustaining gear required t
 
 ## Repository branches
 
-`main` is the durable directory and documentation scaffold. The populated
-hydrator, payload library, and Quartz work currently live on
-`codex/feature/quartz-docs` until that feature is reviewed and merged.
+`main` contains the Victuals directory scaffold, Ubuntu workflow, target-neutral
+definitions, and documentation. Platform adapters remain under `linux/`.
 
 ## Quickstart
 
@@ -23,11 +22,9 @@ task hydrate
 See the READMEs in each top-level directory for the intended contents and
 ownership of the scaffold.
 
-The bootstrap installs and validates Go Task. The hydrator then loads the small
-payload manifest, fetches the menu and sequence definitions needed for the
-current stage, and fetches each package instruction only when it enters the
-deployment queue. It does not download the complete package library before the
-first menu.
+The bootstrap installs and validates Go Task. The Victuals workflow validates
+the small definition manifest, loads catalog metadata before each stage, and
+keeps package-manager behavior and privileged actions in the Linux adapters.
 
 Documentation is published with Quartz v5. See
 [`docs/architecture/documentation-publishing.md`](docs/architecture/documentation-publishing.md)

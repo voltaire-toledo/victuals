@@ -1,0 +1,18 @@
+{
+  "$schema": "./catalog.schema.json",
+  "kind": "catalog",
+  "schemaVersion": "1",
+  "id": "policies",
+  "catalogType": "policies",
+  "items": [
+    { "id": "policy.bootstrap", "kind": "operation", "operationType": "bootstrap", "name": "Victuals bootstrap", "description": "Install and validate the minimum tools required to render and execute the Victuals workflow.", "dependencies": ["tool.curl", "tool.ca-certificates", "tool.gum"] },
+    { "id": "policy.system-update", "kind": "operation", "operationType": "maintenance", "name": "Full system update", "description": "Refresh package metadata and apply available Ubuntu updates.", "dependencies": [] },
+    { "id": "policy.remove-snap", "kind": "operation", "operationType": "maintenance", "name": "Remove and pin Snap", "description": "Remove installed Snap applications and prevent snapd from returning.", "dependencies": [] },
+    { "id": "policy.performance", "kind": "operation", "operationType": "optimization", "name": "Performance baseline", "description": "Apply the tracked TLP, thermald, GNOME, and service policy for a responsive workstation.", "dependencies": ["policy.system-update"] },
+    { "id": "policy.power-integrated", "kind": "operation", "operationType": "optimization", "name": "Integrated graphics power mode", "description": "Select Intel-only PRIME mode for battery-oriented operation.", "dependencies": [] },
+    { "id": "policy.power-compute", "kind": "operation", "operationType": "optimization", "name": "NVIDIA compute mode", "description": "Select NVIDIA on-demand PRIME mode for local-model and CUDA work.", "dependencies": [] },
+    { "id": "policy.gnome-tiling", "kind": "operation", "operationType": "settings", "name": "GNOME tiling policy", "description": "Install exactly one selected GNOME Shell tiling extension and disable managed alternatives.", "dependencies": [] },
+    { "id": "policy.shell-baseline", "kind": "operation", "operationType": "settings", "name": "Shell baseline", "description": "Install and configure the command-line tools used by the tracked shell profiles.", "dependencies": [] },
+    { "id": "policy.kanata", "kind": "operation", "operationType": "settings", "name": "Kanata keyboard service", "description": "Install one privileged system keyboard-remapping service and validate its keymap.", "dependencies": [] }
+  ]
+}

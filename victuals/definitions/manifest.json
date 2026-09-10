@@ -1,0 +1,13 @@
+{
+  "$schema": "./manifest.schema.json",
+  "kind": "manifest",
+  "schemaVersion": "1",
+  "id": "ubuntu-victuals",
+  "name": "Victuals Ubuntu workflow",
+  "description": "Bootstrap manifest for lazily loading target-neutral hydration definitions.",
+  "catalogs": [
+    { "id": "applications", "kind": "catalog", "path": "./applications.json" },
+    { "id": "policies", "kind": "catalog", "path": "./policies.json" },
+    { "id": "presets", "kind": "catalog", "path": "./presets.json" }
+  ]
+}

@@ -4,6 +4,9 @@ set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 LINUX_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+VICTUALS_CATALOG_DIR="${VICTUALS_CATALOG_DIR:-$LINUX_DIR/../victuals/definitions}"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/victuals-catalog.sh"
 REPORT_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles-hydration"
 REPORT_FILE="$REPORT_DIR/report.txt"
 USER_LOCAL_BIN="$HOME/.local/bin"
@@ -64,7 +67,7 @@ bootstrap_hydration() {
   log "Bootstrapping hydration prerequisites"
   run_install "Bootstrap APT metadata" sudo env DEBIAN_FRONTEND=noninteractive apt-get update
   run_install "Bootstrap terminal tools" sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    ca-certificates curl gdebi-core git gnupg flatpak
+    ca-certificates curl gdebi-core git gnupg jq flatpak
 
   if ! command -v gum >/dev/null 2>&1; then
     installing "Gum menu framework"
@@ -307,6 +310,7 @@ esac
 
 if [[ "$MODE" == full ]]; then
   bootstrap_hydration
+  victuals_catalog_validate
 
   printf '\nGuided Ubuntu hydration\n'
   printf 'Bootstrap is validated. All remaining changes wait for your selections.\n'

@@ -57,6 +57,14 @@ task hydrate:gpu-compute
 Return to the maximum-battery configuration with `task hydrate:gpu-integrated`
 and another reboot.
 
+## Definition catalogs
+
+The selectable application and policy metadata is maintained in
+[`../victuals/definitions/`](../victuals/definitions/). The Ubuntu script reads
+and validates those target-neutral definitions before presenting the guided
+choices; package-manager commands, ordering, privilege, and validation remain
+in the Linux adapters.
+
 ## Available Hydration Scripts
 
 ### Ubuntu Desktop 26.04

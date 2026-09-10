@@ -1,0 +1,12 @@
+{
+  "$schema": "./catalog.schema.json",
+  "kind": "catalog",
+  "schemaVersion": "1",
+  "id": "presets",
+  "catalogType": "profiles",
+  "items": [
+    { "id": "preset.ubuntu-baseline", "kind": "profile", "profileType": "preset", "name": "Ubuntu baseline", "description": "Safe baseline for a fresh Ubuntu workstation.", "dependencies": [], "applicationIds": ["terminal.console", "tool.gum"], "policyIds": ["policy.bootstrap", "policy.system-update", "policy.remove-snap", "policy.shell-baseline", "policy.performance", "policy.kanata"] },
+    { "id": "preset.ubuntu-performance", "kind": "profile", "profileType": "preset", "name": "Ubuntu performance", "description": "Performance-oriented baseline with integrated graphics and no optional application selections.", "dependencies": [], "applicationIds": ["terminal.console"], "policyIds": ["policy.bootstrap", "policy.system-update", "policy.remove-snap", "policy.performance", "policy.power-integrated", "policy.shell-baseline", "policy.kanata"] },
+    { "id": "preset.ubuntu-compute", "kind": "profile", "profileType": "preset", "name": "Ubuntu local-model workstation", "description": "Ubuntu workstation profile for NVIDIA on-demand compute workloads.", "dependencies": [], "applicationIds": ["terminal.console", "service.ollama", "agent.codex"], "policyIds": ["policy.bootstrap", "policy.system-update", "policy.remove-snap", "policy.performance", "policy.power-compute", "policy.shell-baseline", "policy.kanata"] }
+  ]
+}

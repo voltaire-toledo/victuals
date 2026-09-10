@@ -1,0 +1,22 @@
+version: '3'
+
+includes:
+  hydrate: ./tasks/hydrate.yml
+  battdrain: ./tasks/battdrain.yml
+
+tasks:
+  default:
+    desc: "List available tasks"
+    cmds:
+      - task --list-all
+    silent: true
+
+  hydrate:
+    desc: "Run the Victuals workflow for an Ubuntu workstation"
+    cmds:
+      - task: hydrate:all
+
+  victuals:validate:
+    desc: "Validate target-neutral Victuals definition catalogs"
+    cmds:
+      - bash "{{.ROOT_DIR}}/linux/scripts/victuals-catalog.sh" validate
