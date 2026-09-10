@@ -22,3 +22,14 @@ task hydrate
 
 See the READMEs in each top-level directory for the intended contents and
 ownership of the scaffold.
+
+The bootstrap installs and validates Go Task. The hydrator then loads the small
+payload manifest, fetches the menu and sequence definitions needed for the
+current stage, and fetches each package instruction only when it enters the
+deployment queue. It does not download the complete package library before the
+first menu.
+
+Documentation is published with Quartz v5. See
+[`docs/architecture/documentation-publishing.md`](docs/architecture/documentation-publishing.md)
+for the publishing decision and [`quartz.config.yaml`](quartz.config.yaml) for
+the enabled search, graph, backlink, and navigation features.
