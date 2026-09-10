@@ -1,13 +1,18 @@
 # Documentation publishing direction
 
-## Recommendation
+## Decision
 
-Use Quartz when the documentation site is ready to be made real. It keeps the
-source as Markdown, supports ordinary relative links, and provides full-text
-search, wikilinks, backlinks, graph view, Mermaid diagrams, explorer navigation,
-breadcrumbs, and table of contents as built-in features. It also deploys to
-GitHub Pages. The tradeoff is a Node-based site toolchain and a convention of
-putting published Markdown under `content/`.
+Victuals is committed to Quartz v5 for documentation publishing. Quartz keeps
+the source as Markdown and provides full-text search, wikilinks, backlinks,
+graph view, Mermaid diagrams, explorer navigation, breadcrumbs, and table of
+contents. The feature branch pins the upstream Quartz v5 source as
+`vendor/quartz` and builds the repository's existing `docs/` directory directly;
+the substantive pages do not need to move into another format or directory.
+
+The GitHub Pages workflow installs the pinned Quartz dependency tree, applies
+`quartz.config.yaml`, and publishes the generated `public/` directory. JSON
+payloads and schemas remain outside the published documentation view by
+configuration, unless a generated catalog page is explicitly added later.
 
 MkDocs Material is the strongest conventional documentation alternative. It is
 simple, Python-based, has excellent navigation and built-in browser search, and

@@ -24,6 +24,7 @@ current stage, and fetches each package instruction only when it enters the
 deployment queue. It does not download the complete package library before the
 first menu.
 
-See [`docs/architecture/payload-model.md`](docs/architecture/payload-model.md)
-for the payload contract and [`docs/index.html`](docs/index.html) for the
-future static documentation entry point.
+Documentation is published with Quartz v5. See
+[`docs/architecture/documentation-publishing.md`](docs/architecture/documentation-publishing.md)
+for the publishing decision and [`quartz.config.yaml`](quartz.config.yaml) for
+the enabled search, graph, backlink, and navigation features.
