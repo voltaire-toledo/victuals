@@ -25,7 +25,7 @@ the first complete hydration pass.
 
 ## Interaction model
 
-The hydrator collects every preference before making application or desktop
+Victuals collects every preference before making application or desktop
 changes, displays a summary, and gives the user a final chance to cancel. Keep
 each category small, curated, and opinionated rather than presenting an
 exhaustive catalog.

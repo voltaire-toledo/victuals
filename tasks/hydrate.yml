@@ -16,7 +16,7 @@ tasks:
     platforms: [linux]
     preconditions:
       - sh: 'test -n "$HYDRATE_SELECTIONS_FILE" && test -r "$HYDRATE_SELECTIONS_FILE"'
-        msg: "Hydration application requires a selection manifest from the hydrator."
+        msg: "Hydration application requires a selection manifest from the Victuals workflow."
     cmds:
       - bash "{{.ROOT_DIR}}/linux/scripts/hydrate-ubuntu.sh" apply "$HYDRATE_SELECTIONS_FILE"
 

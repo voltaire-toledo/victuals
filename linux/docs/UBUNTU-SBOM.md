@@ -83,7 +83,7 @@ order hydration installs them. Transitive libraries are deliberately omitted.
 ## Mandatory apps
 
 These applications install on every full hydration. “Mandatory” means the
-hydrator attempts installation; a missing package in the enabled repositories
+Victuals attempts installation; a missing package in the enabled repositories
 is reported as a validation failure or warning according to its installation
 path.
 

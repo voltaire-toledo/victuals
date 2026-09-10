@@ -4,7 +4,7 @@ This directory contains scripts and documentation for restoring ("hydrating") ap
 
 ## Fresh Ubuntu workflow
 
-From the repository root, bootstrap the minimal Hydrator Requirements:
+From the repository root, bootstrap the minimal Victuals requirements:
 
 ```bash
 bash os/linux/scripts/hydrate.sh
@@ -14,7 +14,7 @@ The pre-hydration script installs only missing requirements: `curl`,
 `ca-certificates`, and `gum`. Bash, an interactive terminal, `sudo`, `apt`,
 and standard shell utilities are assumed to be present on a usable Ubuntu
 installation. It reports the bootstrap duration, then hands off directly to
-the guided hydrator overview and confirmation prompt.
+the guided Victuals overview and confirmation prompt.
 
 The remaining hydration workflow will later be invoked after the preset and
 installation-plan interface is finalized. For the current Task-based workflow,
