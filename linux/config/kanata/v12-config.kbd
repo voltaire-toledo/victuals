@@ -1,0 +1,90 @@
+;; ==============================================================================
+;; Kanata Homerow Mods Configuration (Urob's Timeless Logic)
+;; Layout: CMAS (Ctrl, Meta, Alt, Shift) mirrored on both hands
+;; Architecture: DRY implementation using defvar for cross-platform consistency
+;; ==============================================================================
+
+(defcfg
+  ;; Allows keys not explicitly mapped in defsrc to pass through normally.
+  ;; Crucial for maintainability so we don't have to map the entire board.
+  process-unmapped-keys yes
+
+  ;; Instructs Kanata to ignore the QMK board and process everything else.
+  linux-dev-names-include (
+  "AT Translated Set 2 keyboard"
+  )
+)
+
+;; ------------------------------------------------------------------------------
+;; 1. Source Keys
+;; The matrix is 31 keys: Row 1 (10), Row 2 (11, due to caps), Row 3 (10)
+;; ------------------------------------------------------------------------------
+(defsrc
+  q         w      e      r      t         y      u      i      o      p
+  caps      a      s      d      f      g  h      j      k      l      scln
+  z         x      c      v      b         n      m      comm   .      /
+)
+
+;; ------------------------------------------------------------------------------
+;; 2. Timings & Positional Lists
+;; Variables keep the config DRY. Adjust tap/hold times globally here.
+;; ------------------------------------------------------------------------------
+(defvar
+  ;; Urob favors generous tapping terms because the positional check handles the rest.
+  tap-time  200
+  hold-time 200
+
+  ;; Positional lists: defines which keys on the opposite hand can trigger a modifier.
+  left-hand-keys (
+    q w e r t
+    caps a s d f g
+    z x c v b
+  )
+
+  right-hand-keys (
+    y u i o p
+    h j k l scln
+    n m comm . /
+  )
+)
+
+;; ------------------------------------------------------------------------------
+;; 3. Aliases (The Logic)
+;; tap-hold-release-keys $tap $hold $tap-action $hold-action $trigger-keys
+;; ------------------------------------------------------------------------------
+(defalias
+  ;; Left Hand (CMAS)
+  a-ctl (tap-hold-release-keys $tap-time $hold-time a lctl $right-hand-keys)
+  s-met (tap-hold-release-keys $tap-time $hold-time s lmet $right-hand-keys)
+  d-alt (tap-hold-release-keys $tap-time $hold-time d lalt $right-hand-keys)
+  f-sft (tap-hold-release-keys $tap-time $hold-time f lsft $right-hand-keys)
+
+  ;; Right Hand (Mirrored: SAMC)
+  j-sft (tap-hold-release-keys $tap-time $hold-time j rsft $left-hand-keys)
+  k-alt (tap-hold-release-keys $tap-time $hold-time k ralt $left-hand-keys)
+  l-met (tap-hold-release-keys $tap-time $hold-time l rmet $left-hand-keys)
+  scln-ctl (tap-hold-release-keys $tap-time $hold-time scln rctl $left-hand-keys)
+
+  ;; Layer Toggles
+  caps-nav (tap-hold $tap-time $hold-time esc (layer-toggle nav))
+)
+
+;; ------------------------------------------------------------------------------
+;; 4. Base Layer
+;; Applies the aliases to the home row and passes through the rest transparently.
+;; ------------------------------------------------------------------------------
+(deflayer base
+  _         _      _      _      _         _      _      _      _      _
+  @caps-nav @a-ctl @s-met @d-alt @f-sft _  _      @j-sft @k-alt @l-met @scln-ctl
+  _         _      _      _      _         _      _      _      _      _
+)
+
+;; ------------------------------------------------------------------------------
+;; 5. Navigation Layer
+;; Triggered by holding Caps Lock. Left hand remains transparent for mod access.
+;; ------------------------------------------------------------------------------
+(deflayer nav
+  _         _      _      _      _         _      del    up     bspc   _
+  _         @a-ctl @s-met @d-alt @f-sft _  home   left   down   right  end
+  _         _      _      _      _         pgup   pgdn   _      _      -
+)

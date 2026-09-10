@@ -1,0 +1,89 @@
+# OS-generated files
+**/.DS_Store
+**/Thumbs.db
+**/desktop.ini
+**/$RECYCLE.BIN/
+**/.AppleDouble
+**/.LSOverride
+**/Network Trash Folder
+**/Temporary Items
+**.apdisk
+
+# Editor/IDE
+**/.vscode/**
+**/.idea/
+**/*.swp
+**/*.swo
+**/*~
+
+# Logs and temp files
+**/*.log
+**/*.tmp
+**/*.temp
+**/.cache/
+**/tmp/
+**/temp/
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.venv/**
+
+# JavaScript/TypeScript
+**/node_modules/
+**/.npm/
+**/.pnpm-store/
+**/.yarn/
+
+# Build and package outputs
+**/dist/
+**/build/
+**/coverage/
+
+# Env files, secrets and local override files
+**/.env
+**/.env.*
+**/*.local
+**/*.secret
+
+# AI Instructions (proprietary instructions, chat session logs, session IDs, etc.)
+/AGENTS.md
+/CLAUDE.md
+**/.agents/
+**/.gemini/
+**/.github/skills/
+**/settings.local.json
+
+# XERO/PACE files and instructions
+/.ai/
+
+## Google Antigravity and Antigravity CLI
+.gemini/
+GEMINI.md
+
+## Claude Code and Claude Cowork
+/.claude/
+**/.claude/settings.local.json
+
+## OpenAI Codex and Codex CLI
+/.agents/
+/.codex/
+
+## Github Copilot and Copilot CLI
+
+### Backlog.md
+/.backlog/
+*/.backlog/
+
+### Inspo, PersonalNotes and TaskList directories are best under the /_ignore/ directory
+.playground/
+_playground/
+.scratch/
+_scratch/
+.ignorethis/
+_ignorethis/
+.ignore/
+_ignore/

@@ -1,0 +1,131 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+
+# ==========================================
+# 1. EZA: Modern LS Replacements
+# ==========================================
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -lh --git --icons --group-directories-first'
+alias la='eza -lha --git --icons --group-directories-first'
+alias lt='eza --tree --icons --level=2'
+alias tree='eza --tree --icons'
+
+# ==========================================
+# 2. ALIASES
+# ==========================================
+# Default bat for syntax-highlighted viewing
+# Plain bat for raw output without headers/line numbers (like standard cat)
+alias cat="bat"
+alias catp="bat --style=plain"
+## ••• PODMAN •••
+alias docker="podman"
+alias docker-compose="podman compose"
+## ••• MISC •••
+alias mzsh="micro ~/.zshrc"
+
+# Use bat as the default manpage pager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Set environment variables for VISUAL and EDITOR
+export VISUAL=micro
+export EDITOR=$VISUAL
+
+# Make fzf use fd for the default search (respects .gitignore, extremely fast)
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
+
+# Default visual layout (Reverse list so it renders bottom-up near your prompt)
+export FZF_DEFAULT_OPTS="--layout=reverse --border --inline-info"
+
+# Ctrl+T: Find files with a real-time 'bat' syntax-highlighted preview
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+# Alt+C: Find directories with a real-time 'eza' tree preview
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons --color=always {}'"
+
+# Path to your Oh My Zsh installation
+export ZSH="$HOME/.oh-my-zsh"
+
+# Select a basic OMZ theme (Starship will completely overwrite the prompt rendering)
+ZSH_THEME="re5et"
+
+# Core OMZ Plugins
+plugins=(git extract zoxide)
+
+# Initialize Starship Prompt Engine
+eval "$(starship init zsh)"
+
+# Initialize Mise (Polyglot Toolchain Manager)
+eval "$($HOME/.local/bin/mise activate zsh)"
+
+# Local binary execution path extensions
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
+# User configuration
+source $ZSH/oh-my-zsh.sh
+
+# Obligatory fastfetch
+fastfetch
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/me/.local/bin:$PATH"

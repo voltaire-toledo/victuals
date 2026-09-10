@@ -1,0 +1,140 @@
+;; =======================================================================
+;; KANATA MASTER CONFIGURATION V1.4
+;; Target: Cross-Platform (Windows / Linux Pop!_OS/Ubuntu)
+;; Behavior: Urob's Timeless Logic + Rapid Typing Streak Safeguards
+;; =======================================================================
+
+(defcfg
+  process-unmapped-keys yes
+
+  ;; Target native Linux laptop keyboard (ignored by Windows)
+  linux-dev-names-include (
+    "AT Translated Set 2 keyboard"
+  )
+)
+
+;; -----------------------------------------------------------------------
+;; 1. SOURCE KEYS: 60% Keybd Layout - 54 keys in a 14/14/13/12/1 layout
+;;
+;; Explicitly defining alphas and Caps Lock for positional tracking
+;; -----------------------------------------------------------------------
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    scln '    ret
+  lsft z    x    c    v    b    n    m    comm .    /    rsft
+  spc
+ )
+
+;; -----------------------------------------------------------------------
+;; 2. TIMINGS & POSITIONAL LISTS
+;; -----------------------------------------------------------------------
+(defvar
+  tap-time  300
+  hold-time 200
+
+  ;; Forces a tap if the next key pressed is on the same hand
+  left-hand-keys (
+      grv 1 2 3 4 5
+      tab q w e r t
+      caps a s d f g
+      lsft z x c v b
+  )
+
+  right-hand-keys (
+      6 7 8 9 0 - = bspc
+      y u i o p [ ] \
+      h j k l scln ' ret
+      n m comm . / rsft
+  )
+)
+
+;; -----------------------------------------------------------------------
+;; 3. VIRTUAL KEYS & TIMERS
+;; -----------------------------------------------------------------------
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+;; -----------------------------------------------------------------------
+;; 4. ALIASES & BEHAVIOR LOGIC
+;; -----------------------------------------------------------------------
+(defalias
+  ;; Tap macro: Outputs the key, switches to nomods, waits 20ms idle, restores base
+  tap (multi
+      (layer-switch nomods)
+      (on-idle-fakekey to-base tap 20)
+    )
+
+  ;; Persistent Layer Routers (1, 2, 3, 0)
+  s-bas (layer-switch base)
+  s-npd (layer-switch npad)
+  s-nav (layer-switch nav)
+  s-noh (layer-switch nohrm)
+
+  ;; Layer Toggles (Hold Modifiers)
+  cps-npd (tap-hold $tap-time $hold-time esc (layer-toggle npad))
+  spc-nav (tap-hold $tap-time $hold-time spc (layer-toggle nav))
+
+  ;; Left Hand (CMAS) - Triggers early tap if another left-hand key is pressed
+  a-ct (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lctl $left-hand-keys)
+  s-me (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lmet $left-hand-keys)
+  d-al (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lalt $left-hand-keys)
+  f-sf (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+
+  ;; Right Hand (SAMC) - Triggers early tap if another right-hand key is pressed
+  j-sf (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
+  k-al (tap-hold-release-keys $tap-time $hold-time (multi k @tap) ralt $right-hand-keys)
+  l-me (tap-hold-release-keys $tap-time $hold-time (multi l @tap) rmet $right-hand-keys)
+  scln-ct (tap-hold-release-keys $tap-time $hold-time (multi scln @tap) rctl $right-hand-keys)
+
+)
+
+;; -----------------------------------------------------------------------
+;; 5. LAYERS (Using )
+;; -----------------------------------------------------------------------
+(deflayer base
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  @cps-npd @a-ct  @s-me  @d-al  @f-sf  _    _    @j-sf @k-al @l-me @scln-ct _    _
+  _        _      _      _      _      _    _    _    _    _    _    _
+  @spc-nav
+)
+
+;; BREAK-GLASS LAYER: Vanilla typing, but routing remains accessible
+(deflayer nohrm
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  @cps-npd a      s      d      f      _    _    j    k    l    scln _    _
+  _        _      _      _      _      _    _    _    _    _    _    _
+  @spc-nav
+)
+
+;; The streak-safeguard layer. 'transparent' (_) falls through to base.
+(deflayer nomods
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  _        _      _      _      _      _    _    _    _    _    _    _    _    _
+  _        a      s      d      f      _    _    j    k    l    scln _    _
+  _        _      _      _      _      _    _    _    _    _    _    _
+  spc
+)
+
+;; NPAD LAYER: Virtual NumPad
+;;  * Momentary (hold down KC_CAPS), Persistent (KC_CAPS + KC_2)
+(deflayer npad
+  _        @s-bas @s-npd @s-nav _      _    _    _    _    _    @s-noh _    _    _
+  _        _      _      _      _      _    _    7    8    9    _      _    _    _
+  @cps-npd _      _      _      _      _    _    4    5    6    _      _    _
+  _        _      _      _      _      _    _    1    2    3    _      _
+  0
+)
+
+;; NAV LAYER (Revision: Clustered Right-Hand Navigation)
+;;  * Momentary (hold down KC_SPC), Persistent (KC_CAPS + KC_1)
+(deflayer nav
+  _        @s-bas @s-npd @s-nav _      _    _    _    _    _    @s-noh _    _    _
+  _        _      _      _      _      _    _    del  up   bspc _      _    _    _
+  @cps-npd @a-ct  @s-me  @d-al  @f-sf  _    home left down right end    _    _
+  _        _      _      _      _      _    pgup pgdn _    _    _      _
+  @spc-nav
+)
