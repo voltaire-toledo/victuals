@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "bottles",
+  "title": "Bottles",
+  "description": "Linutil Store application definition for bottles.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "system"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "com.usebottles.bottles",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "bottles.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "com.usebottles.bottles"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "bottles.ready",
+      "check": [
+        "command",
+        "bottles"
+      ],
+      "expected": "bottles is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

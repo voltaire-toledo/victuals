@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "agents",
+  "title": "AI command-line agents",
+  "selection": "multi",
+  "default": [],
+  "options": [
+    {
+      "id": "openai-codex",
+      "label": "OpenAI Codex",
+      "packageIds": [
+        "openai-codex"
+      ]
+    },
+    {
+      "id": "claude-code",
+      "label": "Claude Code",
+      "packageIds": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "opencode",
+      "label": "OpenCode",
+      "packageIds": [
+        "opencode"
+      ]
+    },
+    {
+      "id": "github-copilot-cli",
+      "label": "GitHub Copilot CLI",
+      "packageIds": [
+        "github-copilot-cli"
+      ]
+    },
+    {
+      "id": "gemini-cli",
+      "label": "Gemini CLI",
+      "packageIds": [
+        "gemini-cli"
+      ]
+    }
+  ]
+}

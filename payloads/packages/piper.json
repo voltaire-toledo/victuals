@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "piper",
+  "title": "Piper",
+  "description": "Initial optional payload definition for piper.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "piper",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "piper.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "piper"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "piper.command",
+      "check": [
+        "command",
+        "piper"
+      ],
+      "expected": "piper is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

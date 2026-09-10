@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "gnome-extension-manager",
+  "title": "Gnome Extension Manager",
+  "description": "Initial baseline payload definition for gnome-extension-manager.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "gnome-shell-extension-manager",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "gnome-extension-manager.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "gnome-shell-extension-manager"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "gnome-extension-manager.command",
+      "check": [
+        "command",
+        "gnome-extension-manager"
+      ],
+      "expected": "gnome-extension-manager is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

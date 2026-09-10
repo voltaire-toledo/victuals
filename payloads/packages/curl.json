@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "curl",
+  "title": "Curl",
+  "description": "Initial bootstrap payload definition for curl.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "curl",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "curl.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "curl"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "curl.command",
+      "check": [
+        "command",
+        "curl"
+      ],
+      "expected": "curl is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

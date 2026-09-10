@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "rustconn",
+  "title": "Rustconn",
+  "description": "Initial baseline payload definition for rustconn.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "com.rustconn.RustConn",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "rustconn.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "com.rustconn.RustConn"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "rustconn.command",
+      "check": [
+        "command",
+        "rustconn"
+      ],
+      "expected": "rustconn is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

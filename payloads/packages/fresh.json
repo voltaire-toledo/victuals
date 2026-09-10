@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "fresh",
+  "title": "Fresh",
+  "description": "Initial baseline payload definition for fresh.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "deb",
+    "package": "fresh-editor",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "fresh.install",
+      "phase": "install",
+      "executor": "deb",
+      "run": [
+        "fresh-editor"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "fresh.command",
+      "check": [
+        "command",
+        "fresh"
+      ],
+      "expected": "fresh is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "ansilove",
+  "title": "Ansilove",
+  "description": "Initial baseline payload definition for ansilove.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "ansilove",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "ansilove.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "ansilove"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ansilove.command",
+      "check": [
+        "command",
+        "ansilove"
+      ],
+      "expected": "ansilove is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

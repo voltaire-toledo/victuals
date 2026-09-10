@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "networkmanager-openvpn",
+  "title": "Networkmanager Openvpn",
+  "description": "Initial optional payload definition for networkmanager-openvpn.",
+  "kind": "package",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "network-manager-openvpn-gnome",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "networkmanager-openvpn.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "network-manager-openvpn-gnome"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "networkmanager-openvpn.command",
+      "check": [
+        "command",
+        "networkmanager-openvpn"
+      ],
+      "expected": "networkmanager-openvpn is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

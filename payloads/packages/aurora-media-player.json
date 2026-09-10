@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "aurora-media-player",
+  "title": "Aurora Media Player",
+  "description": "Initial baseline payload definition for aurora-media-player.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "com.github.viniarck.aurora",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "aurora-media-player.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "com.github.viniarck.aurora"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "aurora-media-player.command",
+      "check": [
+        "command",
+        "aurora-media-player"
+      ],
+      "expected": "aurora-media-player is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

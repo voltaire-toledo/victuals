@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "rust",
+  "title": "Rust",
+  "description": "Initial optional payload definition for rust.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "mise",
+    "package": "rust@stable",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "rust.install",
+      "phase": "install",
+      "executor": "mise",
+      "run": [
+        "rust@stable"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "rust.command",
+      "check": [
+        "command",
+        "rust"
+      ],
+      "expected": "rust is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

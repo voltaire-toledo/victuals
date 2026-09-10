@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/v1/operation.schema.json",
+  "id": "tty-fonts",
+  "title": "TTY Fonts",
+  "description": "Linutil-inspired TTY Fonts operation definition.",
+  "kind": "tweak",
+  "state": "draft",
+  "distro": "ubuntu",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "tweak",
+    "accessibility"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "tty-fonts.apply",
+      "phase": "configure",
+      "executor": "script",
+      "run": [
+        "configure-tty-font",
+        "Terminus32Bold"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "tty-fonts.validation",
+      "check": [
+        "tty-font-validation"
+      ],
+      "expected": "TTY Fonts is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

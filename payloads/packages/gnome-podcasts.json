@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "gnome-podcasts",
+  "title": "Gnome Podcasts",
+  "description": "Initial baseline payload definition for gnome-podcasts.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "org.gnome.Podcasts",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "gnome-podcasts.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "org.gnome.Podcasts"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "gnome-podcasts.command",
+      "check": [
+        "command",
+        "gnome-podcasts"
+      ],
+      "expected": "gnome-podcasts is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

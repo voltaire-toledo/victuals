@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "nala",
+  "title": "Nala",
+  "description": "Initial baseline payload definition for nala.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "nala",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "nala.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "nala"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "nala.command",
+      "check": [
+        "command",
+        "nala"
+      ],
+      "expected": "nala is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

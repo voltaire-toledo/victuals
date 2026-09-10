@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "terminal",
+  "title": "Terminal",
+  "selection": "single",
+  "default": "ubuntu-console",
+  "options": [
+    {
+      "id": "ubuntu-console",
+      "label": "Ubuntu Console",
+      "packageIds": []
+    },
+    {
+      "id": "ghostty",
+      "label": "Ghostty",
+      "packageIds": [
+        "ghostty"
+      ]
+    },
+    {
+      "id": "alacritty",
+      "label": "Alacritty",
+      "packageIds": [
+        "alacritty"
+      ]
+    },
+    {
+      "id": "foot",
+      "label": "Foot",
+      "packageIds": [
+        "foot"
+      ]
+    }
+  ]
+}

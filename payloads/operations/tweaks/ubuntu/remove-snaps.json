@@ -1,0 +1,46 @@
+{
+  "$schema": "../../../schemas/v1/operation.schema.json",
+  "id": "remove-snaps",
+  "title": "Remove and Prevent Snap",
+  "description": "Linutil-inspired Remove and Prevent Snap operation definition.",
+  "kind": "tweak",
+  "state": "draft",
+  "distro": "ubuntu",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "tweak",
+    "performance"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "remove-snaps.apply",
+      "phase": "configure",
+      "executor": "script",
+      "run": [
+        "remove-snaps"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "remove-snaps.validation",
+      "check": [
+        "test",
+        "-f",
+        "/etc/apt/preferences.d/no-snap.pref"
+      ],
+      "expected": "Remove and Prevent Snap is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

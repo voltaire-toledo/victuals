@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "chromium",
+  "title": "Chromium",
+  "description": "Initial optional payload definition for chromium.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "org.chromium.Chromium",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "chromium.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "org.chromium.Chromium"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "chromium.command",
+      "check": [
+        "command",
+        "chromium"
+      ],
+      "expected": "chromium is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

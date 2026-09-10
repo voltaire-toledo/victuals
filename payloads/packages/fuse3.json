@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "fuse3",
+  "title": "Fuse3",
+  "description": "Initial baseline payload definition for fuse3.",
+  "kind": "package",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "fuse3",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "fuse3.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "fuse3"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "fuse3.command",
+      "check": [
+        "command",
+        "fuse3"
+      ],
+      "expected": "fuse3 is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

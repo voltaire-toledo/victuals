@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "github-copilot-cli",
+  "title": "Github Copilot Cli",
+  "description": "Initial optional payload definition for github-copilot-cli.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "npm",
+    "package": "@githubnext/github-copilot-cli",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "github-copilot-cli.install",
+      "phase": "install",
+      "executor": "shell",
+      "run": [
+        "pnpm",
+        "add",
+        "-g",
+        "@githubnext/github-copilot-cli"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "github-copilot-cli.command",
+      "check": [
+        "command",
+        "github-copilot-cli"
+      ],
+      "expected": "github-copilot-cli is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

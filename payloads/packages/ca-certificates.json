@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "ca-certificates",
+  "title": "Ca Certificates",
+  "description": "Initial bootstrap payload definition for ca-certificates.",
+  "kind": "package",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "ca-certificates",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "ca-certificates.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "ca-certificates"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ca-certificates.command",
+      "check": [
+        "command",
+        "ca-certificates"
+      ],
+      "expected": "ca-certificates is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

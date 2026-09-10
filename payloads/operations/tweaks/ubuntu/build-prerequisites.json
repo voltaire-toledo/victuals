@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../schemas/v1/operation.schema.json",
+  "id": "build-prerequisites",
+  "title": "Build Prerequisites",
+  "description": "Linutil-inspired Build Prerequisites operation definition.",
+  "kind": "tweak",
+  "state": "draft",
+  "distro": "ubuntu",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "tweak",
+    "developer"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "build-prerequisites.apply",
+      "phase": "configure",
+      "executor": "apt",
+      "run": [
+        "build-essential",
+        "pkg-config"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "build-prerequisites.validation",
+      "check": [
+        "dpkg-query",
+        "-W",
+        "build-essential"
+      ],
+      "expected": "Build Prerequisites is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

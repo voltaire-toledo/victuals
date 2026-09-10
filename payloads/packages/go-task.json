@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "go-task",
+  "title": "Go Task",
+  "description": "Initial bootstrap payload definition for go-task.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [{ "id": "curl" }, { "id": "ca-certificates" }],
+  "delivery": {
+    "manager": "script",
+    "package": "go-task",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "go-task.install",
+      "phase": "bootstrap",
+      "executor": "script",
+      "run": [
+        "bash",
+        "install/install-task.sh"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "go-task.command",
+      "check": [
+        "command",
+        "go-task"
+      ],
+      "expected": "go-task is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "nodejs",
+  "title": "Nodejs",
+  "description": "Initial optional payload definition for nodejs.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "mise",
+    "package": "node@lts",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "nodejs.install",
+      "phase": "install",
+      "executor": "mise",
+      "run": [
+        "node@lts"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "nodejs.command",
+      "check": [
+        "command",
+        "nodejs"
+      ],
+      "expected": "nodejs is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

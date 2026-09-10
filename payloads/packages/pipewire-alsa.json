@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "pipewire-alsa",
+  "title": "Pipewire Alsa",
+  "description": "Initial optional payload definition for pipewire-alsa.",
+  "kind": "package",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "pipewire-alsa",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "pipewire-alsa.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "pipewire-alsa"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "pipewire-alsa.command",
+      "check": [
+        "command",
+        "pipewire-alsa"
+      ],
+      "expected": "pipewire-alsa is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

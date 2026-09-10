@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/voltaire-toledo/victuals/main/schemas/v1/payload.schema.json",
+  "title": "Victuals payload manifest",
+  "description": "Small bootstrap index; package instructions are fetched by URL only when queued.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "payloadId", "baseUrl", "menus", "sequences", "packages", "operations"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "schemaVersion": { "const": "1" }, "payloadId": { "type": "string" }, "baseUrl": { "type": "string", "format": "uri" },
+    "menus": { "type": "array", "items": { "$ref": "#/$defs/remote" } },
+    "sequences": { "type": "array", "items": { "$ref": "#/$defs/remote" } },
+    "packages": { "type": "array", "items": { "$ref": "#/$defs/remote" } },
+    "operations": { "type": "array", "items": { "$ref": "#/$defs/remote" } },
+    "signature": { "type": "string" }
+  },
+  "$defs": { "remote": { "type": "object", "additionalProperties": false, "required": ["id", "path", "sha256"], "properties": { "id": { "type": "string" }, "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }, "platforms": { "type": "array", "items": { "type": "string" } } } } }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "inkscape",
+  "title": "Inkscape",
+  "description": "Linutil Store application definition for inkscape.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "creative"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "inkscape",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "inkscape.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "inkscape"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "inkscape.ready",
+      "check": [
+        "command",
+        "inkscape"
+      ],
+      "expected": "inkscape is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

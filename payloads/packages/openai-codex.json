@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "openai-codex",
+  "title": "Openai Codex",
+  "description": "Initial optional payload definition for openai-codex.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "npm",
+    "package": "@openai/codex",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "openai-codex.install",
+      "phase": "install",
+      "executor": "shell",
+      "run": [
+        "pnpm",
+        "add",
+        "-g",
+        "@openai/codex"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "openai-codex.command",
+      "check": [
+        "command",
+        "openai-codex"
+      ],
+      "expected": "openai-codex is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

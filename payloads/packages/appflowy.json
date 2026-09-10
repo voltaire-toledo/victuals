@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "appflowy",
+  "title": "Appflowy",
+  "description": "Initial baseline payload definition for appflowy.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "com.appflowy.AppFlowy",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "appflowy.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "com.appflowy.AppFlowy"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "appflowy.command",
+      "check": [
+        "command",
+        "appflowy"
+      ],
+      "expected": "appflowy is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

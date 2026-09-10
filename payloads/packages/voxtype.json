@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "voxtype",
+  "title": "Voxtype",
+  "description": "Initial optional payload definition for voxtype.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [{ "id": "wtype" }, { "id": "wl-clipboard" }, { "id": "libnotify-bin" }, { "id": "playerctl" }, { "id": "pipewire-alsa" }],
+  "delivery": {
+    "manager": "deb",
+    "package": "voxtype",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "voxtype.install",
+      "phase": "install",
+      "executor": "deb",
+      "run": [
+        "voxtype"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "voxtype.command",
+      "check": [
+        "command",
+        "voxtype"
+      ],
+      "expected": "voxtype is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "aptitude",
+  "title": "Aptitude",
+  "description": "Initial baseline payload definition for aptitude.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "aptitude",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "aptitude.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "aptitude"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "aptitude.command",
+      "check": [
+        "command",
+        "aptitude"
+      ],
+      "expected": "aptitude is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

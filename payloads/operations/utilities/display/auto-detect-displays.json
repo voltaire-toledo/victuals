@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "auto-detect-displays",
+  "title": "Auto Detect Displays",
+  "description": "Linutil-inspired Auto Detect Displays operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "display"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "auto-detect-displays.apply",
+      "phase": "configure",
+      "executor": "shell",
+      "run": [
+        "detect-and-apply-display-profile"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "auto-detect-displays.validation",
+      "check": [
+        "display-profile",
+        "--check"
+      ],
+      "expected": "Auto Detect Displays is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "otiling",
+  "title": "Otiling",
+  "description": "Initial optional payload definition for otiling.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "curl",
+    "package": "otiling",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "otiling.install",
+      "phase": "install",
+      "executor": "curl",
+      "run": [
+        "otiling"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "otiling.command",
+      "check": [
+        "command",
+        "otiling"
+      ],
+      "expected": "otiling is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

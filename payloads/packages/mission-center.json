@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "mission-center",
+  "title": "Mission Center",
+  "description": "Initial optional payload definition for mission-center.",
+  "kind": "application",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "io.missioncenter.MissionCenter",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "mission-center.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "io.missioncenter.MissionCenter"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "mission-center.command",
+      "check": [
+        "command",
+        "mission-center"
+      ],
+      "expected": "mission-center is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

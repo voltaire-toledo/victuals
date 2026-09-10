@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "git",
+  "title": "Git",
+  "description": "Initial bootstrap payload definition for git.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "bootstrap",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "git",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "git.install",
+      "phase": "bootstrap",
+      "executor": "apt",
+      "run": [
+        "git"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "git.command",
+      "check": [
+        "command",
+        "git"
+      ],
+      "expected": "git is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

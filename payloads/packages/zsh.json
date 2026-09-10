@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "zsh",
+  "title": "Zsh",
+  "description": "Initial baseline payload definition for zsh.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "zsh",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "zsh.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "zsh"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "zsh.command",
+      "check": [
+        "command",
+        "zsh"
+      ],
+      "expected": "zsh is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

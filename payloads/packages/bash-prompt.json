@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "bash-prompt",
+  "title": "Bash Prompt",
+  "description": "Linutil Store application definition for bash-prompt.",
+  "kind": "configuration",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "terminal"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "native",
+    "package": "bash",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "bash-prompt.install",
+      "phase": "install",
+      "executor": "shell",
+      "run": [
+        "bash"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "bash-prompt.ready",
+      "check": [
+        "command",
+        "bash-prompt"
+      ],
+      "expected": "bash-prompt is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

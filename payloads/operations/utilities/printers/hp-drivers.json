@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "hp-drivers",
+  "title": "HP Drivers",
+  "description": "Linutil-inspired HP Drivers operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "printing"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "hp-drivers.apply",
+      "phase": "configure",
+      "executor": "apt",
+      "run": [
+        "hplip"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "hp-drivers.validation",
+      "check": [
+        "hp-setup",
+        "--help"
+      ],
+      "expected": "HP Drivers is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

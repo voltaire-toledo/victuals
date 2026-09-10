@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "set-brightness",
+  "title": "Set Brightness",
+  "description": "Linutil-inspired Set Brightness operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "display"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "set-brightness.apply",
+      "phase": "configure",
+      "executor": "shell",
+      "run": [
+        "set-display-brightness"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "set-brightness.validation",
+      "check": [
+        "display-brightness",
+        "--check"
+      ],
+      "expected": "Set Brightness is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

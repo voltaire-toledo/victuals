@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "obsidian",
+  "title": "Obsidian",
+  "description": "Initial baseline payload definition for obsidian.",
+  "kind": "application",
+  "state": "draft",
+  "category": "baseline",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "flatpak",
+    "package": "md.obsidian.Obsidian",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "obsidian.install",
+      "phase": "install",
+      "executor": "flatpak",
+      "run": [
+        "md.obsidian.Obsidian"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "obsidian.command",
+      "check": [
+        "command",
+        "obsidian"
+      ],
+      "expected": "obsidian is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schemas/v1/operation.schema.json",
+  "id": "epson-drivers",
+  "title": "Epson Drivers",
+  "description": "Linutil-inspired Epson Drivers operation definition.",
+  "kind": "utility",
+  "state": "draft",
+  "distro": "any-linux",
+  "platforms": [
+    "linux"
+  ],
+  "categories": [
+    "utility",
+    "printing"
+  ],
+  "tags": [
+    "linutil-derived"
+  ],
+  "dependencies": [],
+  "actions": [
+    {
+      "id": "epson-drivers.apply",
+      "phase": "configure",
+      "executor": "apt",
+      "run": [
+        "install-epson-drivers"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "epson-drivers.validation",
+      "check": [
+        "printer-driver-epson"
+      ],
+      "expected": "Epson Drivers is applied or available",
+      "required": false
+    }
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/features/",
+    "https://linutil.christitus.com/userguide/tweaks/"
+  ]
+}

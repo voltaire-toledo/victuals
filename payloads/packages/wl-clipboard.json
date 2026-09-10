@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "wl-clipboard",
+  "title": "Wl Clipboard",
+  "description": "Initial optional payload definition for wl-clipboard.",
+  "kind": "tool",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "wl-clipboard",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "wl-clipboard.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "wl-clipboard"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "wl-clipboard.command",
+      "check": [
+        "command",
+        "wl-clipboard"
+      ],
+      "expected": "wl-clipboard is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

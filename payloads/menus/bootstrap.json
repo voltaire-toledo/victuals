@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "bootstrap",
+  "title": "Bootstrap",
+  "selection": "confirm",
+  "default": true,
+  "options": [{ "id": "bootstrap", "label": "Prepare the Victuals runtime", "description": "Queue the minimum bootstrap tools before preference menus." }]
+}

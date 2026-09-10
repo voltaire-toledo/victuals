@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "auto-cpu-freq",
+  "title": "Auto Cpu Freq",
+  "description": "Linutil Store application definition for auto-cpu-freq.",
+  "kind": "service",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "performance"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "script",
+    "package": "auto-cpufreq",
+    "scope": "system"
+  },
+  "actions": [
+    {
+      "id": "auto-cpu-freq.install",
+      "phase": "install",
+      "executor": "script",
+      "run": [
+        "auto-cpufreq"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "auto-cpu-freq.ready",
+      "check": [
+        "command",
+        "auto-cpu-freq"
+      ],
+      "expected": "auto-cpu-freq is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

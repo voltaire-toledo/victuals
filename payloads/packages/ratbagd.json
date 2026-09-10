@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "ratbagd",
+  "title": "Ratbagd",
+  "description": "Initial optional payload definition for ratbagd.",
+  "kind": "service",
+  "state": "draft",
+  "category": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "ratbagd",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "ratbagd.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "ratbagd"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "ratbagd.command",
+      "check": [
+        "command",
+        "ratbagd"
+      ],
+      "expected": "ratbagd is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ]
+}
+

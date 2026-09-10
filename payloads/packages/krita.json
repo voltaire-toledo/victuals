@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/v1/package.schema.json",
+  "id": "krita",
+  "title": "Krita",
+  "description": "Linutil Store application definition for krita.",
+  "kind": "application",
+  "state": "draft",
+  "category": "linutil-store",
+  "categories": [
+    "creative"
+  ],
+  "tags": [],
+  "availability": "optional",
+  "platforms": [
+    "linux"
+  ],
+  "dependencies": [],
+  "delivery": {
+    "manager": "apt",
+    "package": "krita",
+    "scope": "user"
+  },
+  "actions": [
+    {
+      "id": "krita.install",
+      "phase": "install",
+      "executor": "apt",
+      "run": [
+        "krita"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "krita.ready",
+      "check": [
+        "command",
+        "krita"
+      ],
+      "expected": "krita is available",
+      "required": true
+    }
+  ],
+  "metrics": [
+    "package-queued",
+    "package-fetched",
+    "package-installed",
+    "validation-passed",
+    "validation-failed"
+  ],
+  "links": [
+    "https://linutil.christitus.com/userguide/store/"
+  ]
+}

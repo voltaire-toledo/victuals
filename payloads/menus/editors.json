@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/v1/menu.schema.json",
+  "id": "editors",
+  "title": "Terminal editors",
+  "selection": "multi",
+  "default": [],
+  "options": [
+    {
+      "id": "fresh",
+      "label": "Fresh",
+      "packageIds": [
+        "fresh"
+      ]
+    },
+    {
+      "id": "neovim",
+      "label": "Neovim",
+      "packageIds": [
+        "neovim"
+      ]
+    }
+  ]
+}
