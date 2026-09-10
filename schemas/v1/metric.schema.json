@@ -1,9 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/voltaire-toledo/victuals/main/schemas/v1/metric.schema.json",
-  "title": "Victuals metric event",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["id", "event", "timestamp"],
-  "properties": { "$schema": { "type": "string", "format": "uri-reference" }, "id": { "type": "string" }, "event": { "enum": ["menu-shown", "selection-made", "package-queued", "package-fetched", "package-installed", "validation-passed", "validation-failed", "cancelled", "exported"] }, "timestamp": { "type": "string", "format": "date-time" }, "packageId": { "type": "string" }, "menuId": { "type": "string" }, "durationMs": { "type": "integer", "minimum": 0 }, "details": { "type": "object" } }
-}

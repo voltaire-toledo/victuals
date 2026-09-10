@@ -1,8 +1,0 @@
-{
-  "$schema": "../../schemas/v1/menu.schema.json",
-  "id": "baseline-queue",
-  "title": "Baseline provisions",
-  "selection": "confirm",
-  "default": true,
-  "options": [{ "id": "baseline", "label": "Install baseline support", "description": "Queue the approved artifact and runtime managers." }]
-}
