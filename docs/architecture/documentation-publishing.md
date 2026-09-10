@@ -14,6 +14,16 @@ The GitHub Pages workflow installs the pinned Quartz dependency tree, applies
 payloads and schemas remain outside the published documentation view by
 configuration, unless a generated catalog page is explicitly added later.
 
+The workflow can be enabled once repository credentials include permission to
+publish GitHub Actions workflows. The equivalent local build is:
+
+```bash
+cd vendor/quartz
+npm ci
+cp ../../quartz.config.yaml quartz.config.yaml
+node quartz/bootstrap-cli.mjs build -d ../../docs
+```
+
 MkDocs Material is the strongest conventional documentation alternative. It is
 simple, Python-based, has excellent navigation and built-in browser search, and
 renders Mermaid through its Markdown extensions. It is better for a manually
