@@ -158,14 +158,5 @@ battdrain --help
   ./os/linux/hydrate_u2604.sh
   ```
 
-### Omarchy 4 (Quattro)
-- **Script:** [`hydrate_omarchy4.sh`](hydrate_omarchy4.sh)
-- **Description:** An adaptation of the hydration method specifically designed for Omarchy 4 (an Arch-based distribution). It utilizes `pacman` and `yay` (AUR) instead of APT and Snaps to provision the same application catalog and dotfiles.
-- **Usage:** 
-  ```bash
-  chmod +x os/linux/hydrate_omarchy4.sh
-  ./os/linux/hydrate_omarchy4.sh
-  ```
-
 ## Documentation
 - [`APPLICATIONS.md`](APPLICATIONS.md): The full inventory of all packages and configuration locations discovered on the source system, broken down by installation method.
