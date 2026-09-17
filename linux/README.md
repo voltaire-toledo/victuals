@@ -45,7 +45,7 @@ mise-managed development-toolchain prompt offers Node LTS, Python, Rust, Go,
 and Java without replacing Ubuntu's system Python.
 
 For the complete, script-derived package and application inventory, see the
-[Ubuntu hydration SBOM](docs/UBUNTU-SBOM.md). The design rationale is in
+[Ubuntu hydration SBOM](../tasks/docs/UBUNTU-SBOM.md). The design rationale is in
 [HYDRATION-DESIGN.md](docs/HYDRATION-DESIGN.md).
 
 For local NVIDIA model work, switch modes and reboot:

@@ -5,8 +5,18 @@
   "id": "applications",
   "catalogType": "applications",
   "items": [
-    { "id": "terminal.console", "kind": "package", "packageType": "application", "group": "terminal", "name": "Ubuntu Console", "description": "Ubuntu GNOME's pre-installed terminal emulator.", "dependencies": [] },
-    { "id": "terminal.ghostty", "kind": "package", "packageType": "application", "group": "terminal", "name": "Ghostty", "description": "GPU-accelerated modern terminal emulator.", "dependencies": [] },
+    { 
+      "id": "terminal.console", 
+      "kind": "package", 
+      "packageType": "application", 
+      "group": "terminal", 
+      "name": "Ubuntu Console", 
+      "description": "Ubuntu GNOME's pre-installed terminal emulator.", 
+      "dependencies": [] 
+    },
+    {
+      "id": "terminal.ghostty", "kind": "package", "packageType": "application", "group": "terminal", "name": "Ghostty", "description": "GPU-accelerated modern terminal emulator.", "dependencies": [] 
+    },
     { "id": "terminal.alacritty", "kind": "package", "packageType": "application", "group": "terminal", "name": "Alacritty", "description": "Fast GPU-accelerated terminal emulator.", "dependencies": [] },
     { "id": "terminal.foot", "kind": "package", "packageType": "application", "group": "terminal", "name": "Foot", "description": "Lightweight Wayland-native terminal emulator.", "dependencies": [] },
     { "id": "file-manager.carelo", "kind": "package", "packageType": "application", "group": "file-managers", "name": "Carelo", "description": "Local-first dual-pane graphical file manager.", "dependencies": [] },
