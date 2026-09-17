@@ -16,9 +16,13 @@ The current boundary is:
 Static definitions → TUI selections → existing OS-specific hydrator code
 ```
 
-JSON describes applications, suites, policies, targets, and images. The
-hydrator owns ordering, package-manager behavior, secrets, privileged actions,
-configuration, and validation.
+For Task-backed interactive provisioning, the Taskfile owns the prompt catalog;
+the CLI obtains its resolved representation from Task rather than loading a
+second catalog file. JSON may be used as a runtime transport format, but is not
+a second checked-in catalog. See [the Task-backed prompt catalog
+specification](../architecture/taskfile-prompt-catalog.md). The hydrator owns
+ordering, package-manager behavior, secrets, privileged actions, configuration,
+and validation.
 
 ## Documents
 
